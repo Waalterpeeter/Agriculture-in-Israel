@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Israel's Agricultural Revolution — What the World Must Learn</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #e8d5a3;
+    --gold: #c9a84c;
+    --deep-green: #1a3d2b;
+    --sage: #5a7a5e;
+    --sky: #6bb3c8;
+    --rust: #c25b2a;
+    --cream: #f5efe0;
+    --dark: #0f1e14;
+    --white: #fefcf7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── FIXED CORNER WATERMARK ── */
+  body::after {
+    content: 'Agriculture in Israel  ·  A F Peter';
+    position: fixed;
+    bottom: 16px;
+    right: 20px;
+    z-index: 9999;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.6);
+    pointer-events: none;
+    white-space: nowrap;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+  }
+
+  /* ── TILED DIAGONAL WATERMARK ── */
+  .wm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .wm-overlay svg { width: 100%; height: 100%; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px 120px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 120%, #1a3d2b 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, #c9a84c22 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 10% 30%, #6bb3c822 0%, transparent 50%),
+      linear-gradient(170deg, #0f1e14 0%, #152b1e 40%, #0a1610 100%);
+    z-index: 0;
+  }
+  .soil-lines { position: absolute; bottom: 0; left: 0; right: 0; height: 200px; z-index: 1; overflow: hidden; }
+  .soil-line {
+    position: absolute; bottom: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: soilPulse 3s ease-in-out infinite;
+  }
+  .soil-line:nth-child(1) { bottom: 40px;  animation-delay: 0s;   }
+  .soil-line:nth-child(2) { bottom: 80px;  animation-delay: 0.6s; }
+  .soil-line:nth-child(3) { bottom: 120px; animation-delay: 1.2s; }
+  .soil-line:nth-child(4) { bottom: 160px; animation-delay: 1.8s; }
+  @keyframes soilPulse {
+    0%,100% { transform: scaleX(0.8); opacity: 0.04; }
+    50%      { transform: scaleX(1);   opacity: 0.18; }
+  }
+  .droplet {
+    position: absolute; width: 5px; height: 9px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: var(--sky); opacity: 0;
+    animation: drip 4s ease-in infinite;
+  }
+  @keyframes drip {
+    0%   { opacity: 0; transform: translateY(-20px); }
+    20%  { opacity: 0.6; }
+    100% { opacity: 0; transform: translateY(60px); }
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 860px; }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--gold);
+    padding: 6px 18px; border-radius: 2px; margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-flag { font-size: 56px; margin-bottom: 16px; display: block; animation: fadeUp 0.8s 0.1s ease both; }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 7.5vw, 88px); font-weight: 900;
+    line-height: 1.0; color: var(--white); margin-bottom: 8px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-subtitle {
+    font-size: clamp(15px, 2.2vw, 21px); font-weight: 300;
+    color: var(--sand); max-width: 600px; margin: 22px auto 0;
+    line-height: 1.65; animation: fadeUp 0.8s 0.4s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .scroll-cue {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--sage); font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .scroll-arrow {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--sage), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:.3}50%{opacity:1} }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); opacity: 0.8; margin-bottom: 14px;
+  }
+
+  /* ── ARTICLE LEAD ── */
+  .article-lead {
+    background: var(--cream); color: var(--dark);
+    padding: 80px 24px; position: relative;
+  }
+  /* inline watermark stamp top-right */
+  .article-lead::before {
+    content: 'Agriculture in Israel  ·  A F Peter';
+    position: absolute; top: 26px; right: 30px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(201,168,76,0.4); pointer-events: none;
+  }
+  .article-inner { max-width: 740px; margin: 0 auto; }
+  .byline {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; color: var(--rust);
+    text-transform: uppercase; margin-bottom: 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .byline::after { content:''; flex:1; height:1px; background:var(--rust); opacity:.3; }
+  .article-lead p { font-size: clamp(15px,2vw,18px); line-height:1.85; color:#2c2c2c; margin-bottom:20px; }
+  .pull-quote {
+    border-left: 4px solid var(--gold); padding: 20px 28px;
+    margin: 40px 0; background: #eee5cc; border-radius: 0 4px 4px 0;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px,2.3vw,23px); font-style: italic;
+    color: var(--deep-green); margin:0!important; line-height:1.55;
+  }
+
+  /* ── STAT STRIP ── */
+  .stat-strip { background: var(--deep-green); padding: 64px 24px; }
+  .stat-section-title {
+    text-align: center; font-family: 'Playfair Display', serif;
+    font-size: clamp(22px,3.5vw,36px); color: var(--sand); margin-bottom: 48px;
+  }
+  .stat-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit,minmax(185px,1fr)); gap: 3px;
+  }
+  .stat-card {
+    background: #1f4a32; padding: 40px 24px 32px;
+    text-align: center; position: relative; overflow: hidden; transition: background .3s;
+  }
+  .stat-card:hover { background: #265c3e; }
+  .stat-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background: linear-gradient(90deg, var(--gold), var(--sage));
+  }
+  .stat-icon { font-size:32px; margin-bottom:16px; display:block; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px,5vw,54px); font-weight:900;
+    color: var(--gold); line-height:1; display:block; margin-bottom:8px;
+  }
+  .stat-label { font-size:12px; font-weight:500; letter-spacing:.05em; color:var(--sand); line-height:1.4; }
+  .stat-sub { font-family:'DM Mono',monospace; font-size:10px; color:var(--sage); margin-top:6px; display:block; }
+
+  /* ── INNOVATION CARDS ── */
+  .innovations { background: #0d1a12; padding: 80px 24px; }
+  .innovations-header { max-width:740px; margin:0 auto 56px; text-align:center; }
+  .innovations-header h2 {
+    font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,44px);
+    font-weight:700; color:var(--white); margin-bottom:12px;
+  }
+  .innovations-header p { font-size:16px; color:var(--sage); line-height:1.6; }
+  .cards-grid {
+    max-width:1100px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px;
+  }
+  .inno-card {
+    background: linear-gradient(135deg,#162a1f 0%,#0f1e14 100%);
+    border:1px solid #2a4a35; border-radius:4px; padding:36px 32px;
+    position:relative; overflow:hidden; transition:border-color .3s, transform .3s;
+  }
+  .inno-card:hover { border-color:var(--gold); transform:translateY(-4px); }
+  .inno-card::after {
+    content:''; position:absolute; bottom:0; right:0;
+    width:80px; height:80px; border-radius:50% 0 0 0;
+    background:rgba(201,168,76,0.04);
+  }
+  .card-icon { font-size:36px; display:block; margin-bottom:20px; }
+  .card-num { font-family:'DM Mono',monospace; font-size:11px; color:var(--gold); letter-spacing:.2em; margin-bottom:10px; display:block; }
+  .card-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--white); margin-bottom:14px; line-height:1.25; }
+  .card-body { font-size:14px; line-height:1.75; color:#9ab8a4; }
+  .card-tag {
+    display:inline-block; margin-top:20px;
+    font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--gold);
+    border:1px solid rgba(201,168,76,.35); padding:4px 10px; border-radius:2px;
+  }
+
+  /* ── WATER COMPARISON ── */
+  .water-section {
+    background: var(--cream); padding: 80px 24px;
+    position: relative; overflow: hidden;
+  }
+  .water-section::before {
+    content:''; position:absolute; inset:0;
+    background: repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(107,179,200,.06) 48px,rgba(107,179,200,.06) 50px);
+  }
+  /* watermark stamp on light section */
+  .water-section::after {
+    content: 'Agriculture in Israel  ·  A F Peter';
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(201,168,76,0.35); pointer-events: none;
+    white-space: nowrap;
+  }
+  .water-inner { max-width:900px; margin:0 auto; position:relative; z-index:1; }
+  .water-inner h2 {
+    font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,42px);
+    color:var(--deep-green); margin-bottom:12px; text-align:center;
+  }
+  .water-subtitle { text-align:center; color:var(--sage); font-size:16px; margin-bottom:56px; }
+  .water-bars { display:flex; flex-direction:column; gap:28px; }
+  .water-bar-row { display:flex; align-items:center; gap:16px; }
+  .water-bar-label {
+    font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.05em;
+    color:var(--dark); min-width:180px; text-align:right;
+  }
+  .bar-track { flex:1; height:28px; background:#d4c9a8; border-radius:2px; overflow:hidden; position:relative; }
+  .bar-fill {
+    height:100%; border-radius:2px; position:relative;
+    animation: barGrow 1.4s cubic-bezier(0.23,1,0.32,1) both;
+    animation-play-state: paused;
+  }
+  .bar-fill.animated { animation-play-state: running; }
+  @keyframes barGrow { from { width:0!important; } }
+  .bar-fill.israel { background:linear-gradient(90deg, var(--deep-green), var(--sage)); }
+  .bar-fill.spain  { background:linear-gradient(90deg, #8baaa0, #b0c4b0); }
+  .bar-fill.usa    { background:linear-gradient(90deg, #7a9a8a, #9ab0a0); }
+  .bar-fill.global { background:linear-gradient(90deg, #a07060, #c09080); }
+  .bar-pct {
+    position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    font-family:'DM Mono',monospace; font-size:12px; font-weight:500; color:var(--white);
+  }
+  .bar-pct.dark { color:#3a5a42; right:auto; left:calc(100% + 8px); }
+  .water-note { margin-top:36px; text-align:center; font-size:13px; color:var(--sage); font-style:italic; }
+
+  /* ── TIMELINE ── */
+  .timeline-section { background: var(--dark); padding: 80px 24px; }
+  .timeline-header { text-align:center; max-width:600px; margin:0 auto 60px; }
+  .timeline-header h2 {
+    font-family:'Playfair Display',serif; font-size:clamp(24px,3.5vw,40px);
+    color:var(--white); margin-bottom:10px;
+  }
+  .timeline-header p { font-size:15px; color:var(--sage); }
+  .timeline { max-width:760px; margin:0 auto; position:relative; }
+  .timeline::before {
+    content:''; position:absolute; left:80px; top:0; bottom:0; width:2px;
+    background:linear-gradient(to bottom, var(--gold), var(--deep-green));
+  }
+  .tl-item { display:flex; gap:32px; margin-bottom:48px; position:relative; }
+  .tl-year {
+    font-family:'Playfair Display',serif; font-size:18px; font-weight:700;
+    color:var(--gold); min-width:80px; text-align:right; padding-top:2px;
+  }
+  .tl-dot {
+    position:absolute; left:73px; top:6px;
+    width:16px; height:16px; border-radius:50%;
+    background:var(--gold); border:3px solid var(--dark);
+    box-shadow:0 0 0 2px var(--gold);
+  }
+  .tl-content { flex:1; padding-left:36px; }
+  .tl-content h3 { font-family:'Playfair Display',serif; font-size:18px; color:var(--white); margin-bottom:6px; }
+  .tl-content p { font-size:14px; color:#8aaa94; line-height:1.65; }
+
+  /* ── COMPANIES ── */
+  .companies-section {
+    background:#111e17; padding:72px 24px;
+    border-top:1px solid #1f3828;
+  }
+  .companies-section h2 {
+    font-family:'Playfair Display',serif; font-size:clamp(22px,3vw,36px);
+    color:var(--white); text-align:center; margin-bottom:44px;
+  }
+  .company-list {
+    max-width:1000px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;
+  }
+  .company-item { border:1px solid #253d2e; padding:24px 22px; border-radius:3px; transition:border-color .3s; }
+  .company-item:hover { border-color:var(--gold); }
+  .company-name { font-family:'Playfair Display',serif; font-size:17px; color:var(--gold); margin-bottom:8px; }
+  .company-desc { font-size:13px; color:#7a9a84; line-height:1.6; }
+
+  /* ── LESSONS ── */
+  .lessons-section { background: var(--deep-green); padding: 80px 24px; }
+  .lessons-inner { max-width:900px; margin:0 auto; }
+  .lessons-inner h2 {
+    font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,42px);
+    color:var(--white); text-align:center; margin-bottom:48px;
+  }
+  .lessons-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:24px;
+  }
+  .lesson-item {
+    background:rgba(0,0,0,.2); border-radius:4px;
+    padding:30px 26px; border-top:3px solid var(--gold);
+  }
+  .lesson-num {
+    font-family:'Playfair Display',serif; font-size:48px; font-weight:900;
+    color:rgba(201,168,76,.18); line-height:1; margin-bottom:10px;
+  }
+  .lesson-title { font-family:'Playfair Display',serif; font-size:19px; color:var(--sand); margin-bottom:10px; }
+  .lesson-body { font-size:13.5px; color:#8aaa94; line-height:1.7; }
+
+  /* ── FOOTER ── */
+  .article-footer {
+    background:#060e09; padding:56px 24px 48px;
+    text-align:center; border-top:1px solid #1a2e1e;
+    position: relative;
+  }
+  .footer-title { font-family:'Playfair Display',serif; font-size:clamp(20px,3vw,32px); color:var(--gold); margin-bottom:12px; }
+  .footer-sub {
+    font-size:14px; color:var(--sage); margin-bottom:32px;
+    max-width:500px; margin-left:auto; margin-right:auto; line-height:1.6;
+  }
+  .footer-divider { width:60px; height:1px; background:var(--gold); margin:0 auto 28px; opacity:.4; }
+
+  /* Prominent footer watermark badge */
+  .footer-watermark {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.75);
+    border: 1px solid rgba(201,168,76,0.35);
+    padding: 10px 28px;
+    border-radius: 2px;
+    margin-top: 20px;
+    background: rgba(201,168,76,0.05);
+  }
+
+  .footer-meta {
+    font-family:'DM Mono',monospace; font-size:10px;
+    letter-spacing:.18em; color:#3a5a42;
+    text-transform:uppercase; margin-top:32px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width:600px) {
+    .water-bar-label { min-width:110px; font-size:10px; }
+    .timeline::before { left:60px; }
+    .tl-year { min-width:60px; font-size:14px; }
+    .tl-dot { left:53px; }
+    body::after { font-size:9px; right:10px; bottom:10px; }
+    .article-lead::before { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Tiled diagonal watermark overlay -->
+<div class="wm-overlay" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="wmPat" x="0" y="0" width="340" height="170"
+        patternUnits="userSpaceOnUse" patternTransform="rotate(-28)">
+        <text x="10" y="85"
+          font-family="'Courier New', monospace"
+          font-size="11"
+          letter-spacing="3"
+          fill="rgba(201,168,76,0.07)">Agriculture in Israel · A F Peter</text>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#wmPat)"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="soil-lines">
+    <div class="soil-line"></div>
+    <div class="soil-line"></div>
+    <div class="soil-line"></div>
+    <div class="soil-line"></div>
+  </div>
+  <div class="droplet" style="left:15%;animation-delay:.5s;animation-duration:3.8s;"></div>
+  <div class="droplet" style="left:30%;animation-delay:1.2s;animation-duration:4.5s;"></div>
+  <div class="droplet" style="left:55%;animation-delay:.2s;animation-duration:3.2s;"></div>
+  <div class="droplet" style="left:72%;animation-delay:2.1s;animation-duration:4.1s;"></div>
+  <div class="droplet" style="left:88%;animation-delay:.8s;animation-duration:3.6s;"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Facebook · Global Agriculture Report</div>
+    <span class="hero-flag">🇮🇱</span>
+    <h1 class="hero-title">Making the <em>Desert</em><br>Bloom</h1>
+    <p class="hero-subtitle">How Israel transformed arid wasteland into one of the world's most advanced agricultural systems — and what every nation on Earth can learn from it.</p>
+  </div>
+  <div class="scroll-cue">
+    <span>Explore</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ARTICLE LEAD ═══════════════════ -->
+<section class="article-lead">
+  <div class="article-inner">
+    <div class="byline">Agriculture in Israel &nbsp;·&nbsp; A F Peter &nbsp;·&nbsp; May 2026</div>
+
+    <p>More than 60% of Israel's land is desert. Annual rainfall in the south barely reaches 25 mm. And yet, Israel exports over $2 billion in agricultural produce each year — from cherry tomatoes and avocados to cut flowers and specialty grains — while remaining a net food exporter despite being a water-scarce, arid nation of under 10 million people.</p>
+
+    <p>This is not a miracle. It is engineering, policy, collective will, and relentless innovation — a story that began in the early 20th century and has never stopped accelerating. As climate change tightens its grip on the world's breadbaskets, Israel's model is no longer a curiosity. It is a necessity.</p>
+
+    <div class="pull-quote">
+      <p>"When you have no choice but to innovate or starve, it's amazing what you can accomplish."</p>
+    </div>
+
+    <p>From drip irrigation systems exported to over 100 countries, to AI-driven farm management platforms that boost yields by 30% without adding a single drop of water, Israel has built an agricultural civilisation on the premise that scarcity is a problem to be solved — not accepted. The world is watching. The world should be learning.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ STATS ═══════════════════ -->
+<section class="stat-strip">
+  <p class="section-label" style="text-align:center;margin-bottom:12px;">By the Numbers</p>
+  <h2 class="stat-section-title">Israel's Agricultural Achievements at a Glance</h2>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-icon">💧</span>
+      <span class="stat-num">90%</span>
+      <div class="stat-label">Wastewater Recycled for Agriculture</div>
+      <span class="stat-sub">#1 globally — no other country comes close</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🌱</span>
+      <span class="stat-num">50%</span>
+      <div class="stat-label">Higher Crop Yields via Drip Irrigation</div>
+      <span class="stat-sub">vs conventional flood irrigation</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🤖</span>
+      <span class="stat-num">30%</span>
+      <div class="stat-label">Yield Boost from AI Precision Farming</div>
+      <span class="stat-sub">without additional water or land</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🌍</span>
+      <span class="stat-num">100+</span>
+      <div class="stat-label">Countries Using Israeli Drip Systems</div>
+      <span class="stat-sub">Netafim exports worldwide</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🏭</span>
+      <span class="stat-num">80%</span>
+      <div class="stat-label">Municipal Water from Desalination</div>
+      <span class="stat-sub">freeing freshwater for ecology</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🚀</span>
+      <span class="stat-num">#2</span>
+      <div class="stat-label">Most AgTech Startups Per Capita</div>
+      <span class="stat-sub">second only to the United States</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 6 INNOVATIONS ═══════════════════ -->
+<section class="innovations">
+  <div class="innovations-header">
+    <p class="section-label">Core Pillars</p>
+    <h2>Six Innovations That Changed Agriculture Forever</h2>
+    <p>Each breakthrough emerged from necessity — and each now belongs to the world.</p>
+  </div>
+  <div class="cards-grid">
+
+    <div class="inno-card">
+      <span class="card-icon">💧</span>
+      <span class="card-num">01 / 06</span>
+      <div class="card-title">Drip Irrigation</div>
+      <p class="card-body">Invented by Israeli water engineer Simcha Blass in the 1960s, drip irrigation delivers precise amounts of water directly to plant roots — eliminating evaporation and runoff. Netafim commercialised the technology and now operates in 100+ countries, transforming agriculture from sub-Saharan Africa to the American Southwest.</p>
+      <span class="card-tag">Water Efficiency</span>
+    </div>
+
+    <div class="inno-card">
+      <span class="card-icon">🔬</span>
+      <span class="card-num">02 / 06</span>
+      <div class="card-title">Smart Sensors & AI Farming</div>
+      <p class="card-body">Israeli platforms like SupPlant and Taranis use soil sensors, satellite imagery, and machine learning to generate real-time irrigation and fertilisation recommendations. AI-equipped farms report water savings and yield improvements of up to 30% — "without changing anything, just doing it accurately," as Volcani Institute's Prof. Kapulnik explains.</p>
+      <span class="card-tag">Precision Agriculture</span>
+    </div>
+
+    <div class="inno-card">
+      <span class="card-icon">♻️</span>
+      <span class="card-num">03 / 06</span>
+      <div class="card-title">Wastewater Recycling</div>
+      <p class="card-body">Israel recycles approximately 90% of its wastewater — the highest rate on Earth — treating and redirecting it for agricultural irrigation. The Shafdan facility alone provides 140 million cubic metres of reclaimed water annually to Negev desert farms, supplying over 60% of that region's agricultural water needs entirely from treated sewage.</p>
+      <span class="card-tag">Water Circularity</span>
+    </div>
+
+    <div class="inno-card">
+      <span class="card-icon">🏗️</span>
+      <span class="card-num">04 / 06</span>
+      <div class="card-title">Controlled Environment Agriculture</div>
+      <p class="card-body">Israel pioneered sophisticated greenhouse systems regulating temperature, humidity, light, and CO₂ to produce crops year-round regardless of desert conditions. Modern Israeli smart greenhouses integrate climate sensors and automated actuators to maximise yield per square metre while slashing water and energy waste.</p>
+      <span class="card-tag">Year-Round Production</span>
+    </div>
+
+    <div class="inno-card">
+      <span class="card-icon">🧬</span>
+      <span class="card-num">05 / 06</span>
+      <div class="card-title">Crop Biotechnology</div>
+      <p class="card-body">The Volcani Center — Israel's national agricultural R&D institute — has developed drought-resistant seed varieties, biological pest controls, and disease-resistant crops shared freely with international partners. Companies like Evogene use computational genomics and AI to engineer next-generation plant varieties for global food security.</p>
+      <span class="card-tag">Biotechnology</span>
+    </div>
+
+    <div class="inno-card">
+      <span class="card-icon">🌊</span>
+      <span class="card-num">06 / 06</span>
+      <div class="card-title">Desalination at Scale</div>
+      <p class="card-body">Israel operates some of the world's most advanced seawater desalination plants along its Mediterranean coast. By supplying over 80% of municipal water through desalination, Israel has freed its natural freshwater reserves for ecological and agricultural use — creating a circular water economy few nations have yet attempted at this scale.</p>
+      <span class="card-tag">Water Security</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ WATER COMPARISON ═══════════════════ -->
+<section class="water-section" id="waterSection">
+  <div class="water-inner">
+    <p class="section-label" style="text-align:center;color:var(--sage);">Wastewater Recycling — Global Comparison</p>
+    <h2>How Far Ahead Is Israel?</h2>
+    <p class="water-subtitle">Percentage of wastewater recycled for agricultural reuse</p>
+
+    <div class="water-bars">
+      <div class="water-bar-row">
+        <div class="water-bar-label">🇮🇱 Israel</div>
+        <div class="bar-track">
+          <div class="bar-fill israel" id="bar1" style="width:90%">
+            <span class="bar-pct">~90%</span>
+          </div>
+        </div>
+      </div>
+      <div class="water-bar-row">
+        <div class="water-bar-label">🇪🇸 Spain</div>
+        <div class="bar-track">
+          <div class="bar-fill spain" id="bar2" style="width:17%">
+            <span class="bar-pct dark">17%</span>
+          </div>
+        </div>
+      </div>
+      <div class="water-bar-row">
+        <div class="water-bar-label">🇺🇸 United States</div>
+        <div class="bar-track">
+          <div class="bar-fill usa" id="bar3" style="width:8%">
+            <span class="bar-pct dark">8%</span>
+          </div>
+        </div>
+      </div>
+      <div class="water-bar-row">
+        <div class="water-bar-label">🌍 Global Average</div>
+        <div class="bar-track">
+          <div class="bar-fill global" id="bar4" style="width:4%">
+            <span class="bar-pct dark">~4%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="water-note">Sources: Farmonaut 2025 · Unpacked Media 2025 · Israel Innovation Authority · Times of Israel</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ TIMELINE ═══════════════════ -->
+<section class="timeline-section">
+  <div class="timeline-header">
+    <p class="section-label">Historical Arc</p>
+    <h2>From Sand to Science</h2>
+    <p>Key milestones in Israel's agricultural transformation</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1910s</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h3>The Kibbutz Movement Begins</h3>
+        <p>Collective farming communities (kibbutzim) pioneer cooperative agriculture in inhospitable terrain, building a culture of shared innovation that underpins Israeli farming to this day.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1948</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h3>State Founded — Food Security Imperative</h3>
+        <p>Israel is established with almost no arable land, minimal rainfall, and desert covering over 60% of its territory. Agriculture becomes a national survival mission from day one.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1960s</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h3>Drip Irrigation Invented</h3>
+        <p>Simcha Blass patents drip irrigation technology — a system delivering precise water directly to plant roots. Netafim is founded to commercialise it, eventually reaching 100+ countries.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1980s</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h3>The Volcani Center Expands</h3>
+        <p>Israel's national agricultural R&D institute accelerates development of drought-resistant crops, biological pest controls, and advanced soil science, sharing innovations with global partners.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2000s</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h3>Desalination Goes Mainstream</h3>
+        <p>Large-scale seawater desalination plants come online. By the 2010s, desalinated water meets over 80% of Israel's municipal needs — creating a water surplus re-directed to agriculture.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2020s</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h3>AI & IoT Transform the Farm</h3>
+        <p>Smart irrigation networks using AI, satellite data, and IoT sensors become mainstream. National data infrastructures enable real-time, climate-adaptive agriculture — a model the world is beginning to replicate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COMPANIES ═══════════════════ -->
+<section class="companies-section">
+  <p class="section-label" style="text-align:center;margin-bottom:12px;">Global AgTech Players</p>
+  <h2>Israeli Companies Feeding the World</h2>
+  <div class="company-list">
+    <div class="company-item">
+      <div class="company-name">🌿 Netafim</div>
+      <div class="company-desc">Pioneer of precision drip irrigation — exports to 100+ countries. The world's largest drip and micro-irrigation company by reach.</div>
+    </div>
+    <div class="company-item">
+      <div class="company-name">🛰️ Taranis</div>
+      <div class="company-desc">AI and machine learning platform enabling field monitoring and data-driven crop decisions via satellite and drone imagery.</div>
+    </div>
+    <div class="company-item">
+      <div class="company-name">🌱 SupPlant</div>
+      <div class="company-desc">Plant-centric irrigation intelligence using soil sensors, cloud computing, and AI to deliver real-time water savings of up to 5% per cycle.</div>
+    </div>
+    <div class="company-item">
+      <div class="company-name">🧬 Evogene</div>
+      <div class="company-desc">Computational biology leader using AI-driven genomic platforms to improve crop yield, pest resistance, and climate resilience globally.</div>
+    </div>
+    <div class="company-item">
+      <div class="company-name">💧 Rivulis</div>
+      <div class="company-desc">Global leader in micro-irrigation systems and digital farming tools, optimising water and nutrient delivery with unprecedented precision.</div>
+    </div>
+    <div class="company-item">
+      <div class="company-name">🍄 Groundwork BioAg</div>
+      <div class="company-desc">Produces low-cost mycorrhizal fungi products that enhance plant resilience, nutrient uptake, and soil health — reducing fertiliser dependency.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LESSONS ═══════════════════ -->
+<section class="lessons-section">
+  <div class="lessons-inner">
+    <p class="section-label" style="text-align:center;margin-bottom:14px;">What Every Nation Can Adopt</p>
+    <h2>Six Lessons the World Must Learn from Israel</h2>
+    <div class="lessons-grid">
+      <div class="lesson-item">
+        <div class="lesson-num">01</div>
+        <div class="lesson-title">Treat Water as Sacred</div>
+        <p class="lesson-body">Every drop counts. National water recycling policies, wastewater treatment investment, and pricing that reflects true water scarcity create the conditions for agricultural efficiency.</p>
+      </div>
+      <div class="lesson-item">
+        <div class="lesson-num">02</div>
+        <div class="lesson-title">Invest in AgTech R&D</div>
+        <p class="lesson-body">Government-backed institutions like the Volcani Center demonstrate that public investment in agricultural science generates outsized national and global returns.</p>
+      </div>
+      <div class="lesson-item">
+        <div class="lesson-num">03</div>
+        <div class="lesson-title">Embrace Precision Farming</div>
+        <p class="lesson-body">AI-powered irrigation and soil monitoring are no longer luxuries. They are the fastest path to feeding more people with less water, land, and chemical input.</p>
+      </div>
+      <div class="lesson-item">
+        <div class="lesson-num">04</div>
+        <div class="lesson-title">Cooperate Collectively</div>
+        <p class="lesson-body">The kibbutz model proved that shared knowledge and collective innovation outperform isolated effort. Farmer cooperatives and open-data platforms accelerate adoption of best practices.</p>
+      </div>
+      <div class="lesson-item">
+        <div class="lesson-num">05</div>
+        <div class="lesson-title">Plan for Drought Now</div>
+        <p class="lesson-body">Desalination and wastewater recycling infrastructure takes years to build. Nations facing growing water stress must begin that journey today — before crisis forces the issue.</p>
+      </div>
+      <div class="lesson-item">
+        <div class="lesson-num">06</div>
+        <div class="lesson-title">Reframe Scarcity as Innovation</div>
+        <p class="lesson-body">Israel's greatest agricultural asset was not land or water — it was the mindset that constraints are problems to be engineered away. That mindset is freely transferable to every nation on Earth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="article-footer">
+  <div class="footer-divider"></div>
+  <h3 class="footer-title">🌾 The Desert Has Already Bloomed</h3>
+  <p class="footer-sub">Israel proved the impossible. Now the world must decide whether to learn from it — before water scarcity and climate change make that choice for us.</p>
+
+  <!-- Prominent watermark badge -->
+  <div class="footer-watermark">Agriculture in Israel &nbsp;·&nbsp; A F Peter</div>
+
+  <p class="footer-meta">
+    Sources: Farmonaut 2025 · Israel Innovation Authority · Unpacked Media · Genetic Literacy Project · Times of Israel · iGrow News · Global AgTech Initiative
+  </p>
+  <p class="footer-meta" style="margin-top:10px;color:#1f3828;">
+    © Agriculture in Israel by A F Peter · May 2026
+  </p>
+</footer>
+
+<script>
+  // Animate bar fills on scroll into view
+  const bars = document.querySelectorAll('.bar-fill');
+  const section = document.getElementById('waterSection');
+  if (section) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          bars.forEach(b => b.classList.add('animated'));
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(section);
+  }
+</script>
+</body>
+</html>
